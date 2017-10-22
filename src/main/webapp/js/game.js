@@ -44,7 +44,8 @@ var NT = NT || {
                 break;
 
             case "removePlayer":
-                $("#map").find(`[username='${data.player.username}']`);
+                $("#map").find(`[data-username='${data.player.username}']`).remove();
+                $("#rankingList").find(`[data-user='${data.player.username}']`).remove();
                 break;
 
             case "gameOver":
@@ -113,6 +114,8 @@ var NT = NT || {
             case "ArrowDown":
                 direction = "down";
                 break;
+            default: 
+                return;
         }
         var msg = {
             action: "move",

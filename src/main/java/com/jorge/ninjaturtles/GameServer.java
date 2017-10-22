@@ -87,6 +87,8 @@ public class GameServer {
     @OnClose
     public void onClose(Session session) {
         Player player = game.getPlayerBySession(session);
+        
+        System.out.println("Player " + player.getUsername() + " disconnected.");
         game.removePlayer(player);
         
         Message newPlayerMsg = new Message("removePlayer");
