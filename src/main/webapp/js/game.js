@@ -96,7 +96,7 @@ var NT = NT || {
         if(playerAvatar.length){
             playerAvatar.detach().appendTo(moveTo);
         }else{
-            moveTo.append(`<img class='player-avatar' data-username='${player.username}' src='img/tortoise.svg'></img>`);
+            moveTo.append(`<img class='player-avatar' data-username='${player.username}' src='img/tortoise.png' style='background-color: ${randomColor({seed: player.username})};'></img>`);
         }
     },
     onKeyUp: function(e){
