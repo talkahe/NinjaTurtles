@@ -1,0 +1,35 @@
+body{
+	background: #666;
+}
+header{
+	height: 13vh;
+}
+section#game{
+	height: 87vh;
+}
+div#players{
+	border-left: solid 3px #343a40;
+}
+#mapContainer{
+	background-image: url(../img/wall.jpg);
+}
+#map{
+	overflow: hidden;
+}
+div.tile{
+	height: 30px;
+	width: 30px;
+	background: url(../img/wood.jpg);
+}
+div.item{
+	background-image: url(../img/apple.png), url(../img/wood.jpg);
+	background-size: contain, auto;
+	background-repeat: no-repeat, repeat;
+}
+div.tile.blocked{
+	background: none;
+}
+.player-avatar{
+	width: 25px;
+	text-align: center;
+}

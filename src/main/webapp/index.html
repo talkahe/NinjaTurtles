@@ -1,11 +1,64 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Ninja Turtles</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <script src="js/websocket.js"></script>
-    </head>
-    <body>
-        <div>Ninja Turtles</div>
-    </body>
+<html lang="en">
+	<head>
+		<title>Ninja Turtles Game</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+		<link href="css/styles.css" rel="stylesheet" type="text/css"/>
+
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<div id="welcomeModal" class="modal" data-backdrop="static">
+			<div class="modal-dialog bg-light" role="document">
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="username">Username</label>
+						<input type="text" class="form-control" id="username" placeholder="Jonas" required>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="startPlaying" class="btn btn-primary">Start playing!</button>
+				</div>
+			</div>
+		</div>
+		<div id="gameOverModal" class="modal" data-backdrop="static">
+			<div class="modal-dialog bg-light" role="document">
+				<div class="modal-body">
+					<div class="display-4">Game Over!</div>
+					<div id="winner" class="lead"></div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="playAgain" class="btn btn-primary">Play again!</button>
+				</div>
+			</div>
+		</div>
+		<div class="container-fluid">
+			<header class="row p-2 bg-dark text-light">
+				<div class="col-9">
+					<h1 class="display-4">Ninja Turtles Game</h1>
+				</div>
+				<div class="col-3" id="player-info">
+					<div id="welcome" class="h4 font-weight-normal">Welcome user!</div>
+					<div id="points" class="h4">
+						Points
+						<span class="badge badge-primary">0</span>
+					</div>
+				</div>
+			</header>
+			<section id="game" class="row">
+				<div id="mapContainer" class="col-9 p-0">
+					<div id="map" class=""></div>
+				</div>
+				<div id="players" class="col-3 bg-secondary pt-1 text-light">
+					<div class="h5 text-center">Players</div>
+					<ul id="rankingList"></ul>
+				</div>
+			</section>
+		</div>
+		<script src="js/game.js"></script>
+	</body>
 </html>
