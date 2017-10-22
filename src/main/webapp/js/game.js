@@ -21,14 +21,17 @@ var NT = NT || {
         var data = msg.data;
         switch(msg.action){
             case "startingGame":
-            $("#gameOverModal").modal("hide");
-            NT.renderMap(data.map);
-            data.players.forEach(player => {
-                NT.updatePlayerPosition(player);
-                NT.updateRanking(player);
-            });
-            NT.listenKeys();
-            break;
+                $("#gameOverModal").modal("hide");
+                $("#map").empty();
+                $("#rankingList").empty();
+
+                NT.renderMap(data.map);
+                data.players.forEach(player => {
+                    NT.updatePlayerPosition(player);
+                    NT.updateRanking(player);
+                });
+                $(window).on("keyup", NT.onKeyUp);
+                break;
 
             case "playerUpdate":
                 NT.updateRanking(data.player);
@@ -45,13 +48,11 @@ var NT = NT || {
                 break;
 
             case "gameOver":
-                NT.stop();
+                $(window).off("keyup");
                 $("#gameOverModal").modal("show");
                 $("#gameOverModal #winner").text(`Winner: ${data.winner.username}!`);
 
                 $("#gameOverModal #playAgain").on('click', function(){
-                    $("#map").empty();
-                    $("#rankingList").empty();
                     NT.start(NT.username);
                 });
                 break;
@@ -97,9 +98,6 @@ var NT = NT || {
             moveTo.append(`<img class='player-avatar' data-username='${player.username}' src='img/tortoise.svg'></img>`);
         }
     },
-    listenKeys: function(){
-        $(window).on("keyup", NT.onKeyUp);
-    },
     onKeyUp: function(e){
         var direction;
         switch(e.key){
@@ -122,7 +120,8 @@ var NT = NT || {
                 direction: direction
             }
         };
-        NT.ws.send(JSON.stringify(msg));
+        if(NT.ws.readyState == 1)
+            NT.ws.send(JSON.stringify(msg));
     },
     reset: function(){
         NT.stop();
@@ -131,9 +130,9 @@ var NT = NT || {
         NT.welcomePlayer();
     },
     stop: function(){
+        $(window).off("keyup");
         if(NT.ws)
             NT.ws.close();
-            console.log("close");
     }
 };
 
