@@ -3,28 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.jorge.ninjaturtles;
+package com.jorge.ninjaturtles.game;
+
+import java.awt.Point;
 
 /**
  *
  * @author Jorge
  */
 public class Tile {
-    private Tile topTile;
-    private Tile bottomTile;
-    private Tile rightTile;
-    private Tile leftTile;
-    private boolean isSolid;
+    private final Point coords;
+    private transient Tile topTile;
+    private transient Tile bottomTile;
+    private transient Tile rightTile;
+    private transient Tile leftTile;
+    private boolean hasItem;
+    private transient Player player;
 
-    public Tile(Tile topTile, Tile bottomTile, Tile rightTile, Tile leftTile, boolean isSolid) {
-        this.topTile = topTile;
-        this.bottomTile = bottomTile;
-        this.rightTile = rightTile;
-        this.leftTile = leftTile;
-        this.isSolid = isSolid;
-    }
-
-    public Tile() {
+    public Tile(Point coords) {
+        this.coords = coords;
     }
 
     public Tile getTopTile() {
@@ -59,13 +56,23 @@ public class Tile {
         this.leftTile = leftTile;
     }
 
-    public boolean isIsSolid() {
-        return isSolid;
+    public boolean hasItem() {
+        return hasItem;
     }
 
-    public void setIsSolid(boolean isSolid) {
-        this.isSolid = isSolid;
+    public void setHasItem(boolean hasItem) {
+        this.hasItem = hasItem;
     }
-    
-    
+
+    public Point getCoords() {
+        return coords;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
 }
