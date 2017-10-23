@@ -103,12 +103,7 @@ public class Game {
     }
     
     public void removePlayer(Player player) {
-        try{
-            player.getPosition().setHasItem(false);
-            this.players.remove(player);
-        }catch(Exception e){
-            
-        }
+        this.players.remove(player);
     }
     
     public Player getPlayerBySession(Session session){

@@ -1,7 +1,6 @@
 
 package com.jorge.ninjaturtles;
 
-import com.google.gson.Gson;
 import com.jorge.ninjaturtles.game.Game;
 import com.jorge.ninjaturtles.game.Player;
 import com.jorge.ninjaturtles.game.Tile;
@@ -10,7 +9,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.websocket.EncodeException;
 import javax.websocket.OnClose;
-import javax.websocket.OnError;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
@@ -63,7 +61,6 @@ public class GameServer {
 
     @OnOpen
     public void onOpen(Session session, @PathParam("username") String username) {
-        Gson gson = new Gson();    
         System.out.println("User " + username + " connected.");
        
         Player player = game.addPlayer(username, session);
@@ -78,10 +75,6 @@ public class GameServer {
         startMsg.addData("map", game.getMap());
         startMsg.addData("players", game.getPlayers());
         this.send(startMsg, session);
-    }
-
-    @OnError
-    public void onError(Throwable t) {
     }
 
     @OnClose
