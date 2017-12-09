@@ -1,6 +1,6 @@
 var NT = NT || {
     start: function(username) {
-        var ws = ws || new WebSocket(`ws://${window.location.host}/NinjaTurtles/game/${username}`);
+        var ws = ws || new WebSocket(`wss://${window.location.host}${window.location.pathname}game/${username}`);
         ws.onmessage = NT.receive;
         ws.onerror = NT.reset;
         NT.ws = ws;
